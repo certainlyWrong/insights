@@ -171,6 +171,33 @@ for index, row in tax_annual.iterrows():
         ) * 100
 tax_ctb = records(PROCESSED / "carga_tributaria_governo_geral_anual.csv")
 
+# Purchasing power of the Real. July 1994 is the price-level reference; the
+# first compounded monthly change is August 1994, so July's inflation is not
+# incorrectly counted as though the new currency were in circulation all month.
+ipca_source = json.loads((ROOT / "data/raw/bcb/ipca_mensal.json").read_text(encoding="utf-8"))
+ipca_rows = []
+price_index = 100.0
+for observation in ipca_source:
+    date = datetime.strptime(observation["data"], "%d/%m/%Y")
+    period = date.strftime("%Y-%m")
+    if period < "1994-07":
+        continue
+    monthly_rate = float(str(observation["valor"]).replace(",", "."))
+    if period > "1994-07":
+        price_index *= 1 + monthly_rate / 100
+    remaining = 10000 / price_index
+    ipca_rows.append({
+        "data": period,
+        "ipca_mensal_percentual": monthly_rate,
+        "variacao_incluida_no_acumulado": period > "1994-07",
+        "indice_precos_jul_1994_100": price_index,
+        "inflacao_acumulada_desde_jul_1994_percentual": (price_index / 100 - 1) * 100,
+        "perda_poder_compra_percentual": 100 - remaining,
+        "poder_compra_remanescente_percentual": remaining,
+        "preco_cesta_r_100_jul_1994": price_index,
+    })
+ipca_latest = ipca_rows[-1]
+
 payload = clean(
     {
         "updated": "2026-10-06",
@@ -179,6 +206,7 @@ payload = clean(
             {"name": "Tesouro Nacional — Fatores de variação da DPF", "url": "https://www.tesourotransparente.gov.br/ckan/dataset/fatores-de-variacao-da-divida-publica-federal"},
             {"name": "Tesouro Nacional — Emissões e resgates", "url": "https://www.tesourotransparente.gov.br/ckan/dataset/emissoes-e-resgates-divida-publica-federal"},
             {"name": "Banco Central — Séries SGS", "url": "https://dadosabertos.bcb.gov.br/"},
+            {"name": "Banco Central/IBGE — IPCA mensal (SGS 433)", "url": "https://dadosabertos.bcb.gov.br/dataset/433-indice-nacional-de-precos-ao-consumidor-amplo-ipca"},
             {"name": "SIOP — Dados Abertos do Orçamento", "url": "https://orcamento.dados.gov.br/siopdoc/doku.php/acesso_publico:dados_abertos/"},
             {"name": "MDS/SAGICAD — VIS DATA, benefícios sociais", "url": "https://aplicacoes.cidadania.gov.br/vis/data3/"},
             {"name": "MDS — Balanço do Bolsa Família 2024", "url": "https://www.gov.br/mds/pt-br/noticias-e-conteudos/desenvolvimento-social/noticias-desenvolvimento-social/governo-federal-repassa-r-168-3-bilhoes-pelo-bolsa-familia-em-2024"},
@@ -235,6 +263,20 @@ payload = clean(
                 "latest_url": "https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/relatorios/arrecadacao-federal",
                 "general_tax_burden_url": "https://www.gov.br/tesouronacional/pt-br/estatisticas-fiscais-e-planejamento/carga-tributaria-do-governo-geral",
                 "raw_files": ["data/raw/tributos/arrecadacao_receitas_federais_1994_2025.xlsx", "data/raw/tributos/arrecadacao_federal_2026_ate_agosto.xlsx", "data/raw/tributos/carga_tributaria_governo_geral_2025.xlsx"],
+            },
+        },
+        "purchasing_power": {
+            "monthly": ipca_rows,
+            "source": {
+                "name": "IPCA mensal — Banco Central do Brasil / IBGE (SGS 433)",
+                "collected_at": "2026-10-06",
+                "base_period": "1994-07",
+                "period_start": ipca_rows[0]["data"],
+                "period_end": ipca_latest["data"],
+                "reference_index": 100,
+                "unit": "Variação mensal do IPCA (%)",
+                "method": "Índice de preços relativo a julho de 1994, composto pelas variações mensais de agosto de 1994 até o último período disponível",
+                "url": "https://dadosabertos.bcb.gov.br/dataset/433-indice-nacional-de-precos-ao-consumidor-amplo-ipca",
             },
         },
     }

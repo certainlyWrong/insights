@@ -48,6 +48,12 @@ uv run python scripts/processar_impostos.py
 uv run python web/scripts/build_data.py
 ```
 
+## Poder de compra do real e IPCA
+
+A série mensal IPCA (SGS 433), obtida do [Banco Central do Brasil](https://dadosabertos.bcb.gov.br/dataset/433-indice-nacional-de-precos-ao-consumidor-amplo-ipca) e calculada pelo IBGE, está preservada em `raw/bcb/ipca_mensal.json`. Para medir a evolução dos preços desde o real, julho de 1994 é a referência igual a 100 e as variações são compostas a partir de agosto de 1994. O índice de preços é o produto dos fatores mensais; inflação acumulada é o índice dividido pela base menos 1. A perda do poder de compra é calculada separadamente como `1 - (índice-base / índice atual)`. Assim, inflação acumulada e perda de poder de compra não são percentuais iguais.
+
+Essa conversão é uma aproximação para o nível médio de preços medido pelo IPCA e não representa a inflação pessoal de cada família nem a variação cambial do real. A resposta exibida no painel usa o último mês presente no arquivo bruto; a coleta atual termina em agosto de 2026.
+
 ## Fontes
 
 | Arquivo bruto | Fonte e conteúdo | Histórico disponível | Licença |
