@@ -1,0 +1,322 @@
+data,classe_carteira,tipo_divida,valor_r_bilhoes
+2017-09-01,Banco Central,Dívida Interna,1650.43563132876
+2017-09-01,Mercado,Dívida Externa,118.88512150858
+2017-09-01,Mercado,Dívida Interna,3311.94896479064
+2017-10-01,Banco Central,Dívida Interna,1639.00049873067
+2017-10-01,Mercado,Dívida Externa,127.06885704844
+2017-10-01,Mercado,Dívida Interna,3311.40979829978
+2017-11-01,Banco Central,Dívida Interna,1645.77166212442
+2017-11-01,Mercado,Dívida Externa,121.40524779221
+2017-11-01,Mercado,Dívida Interna,3371.98120679784
+2017-12-01,Banco Central,Dívida Interna,1659.45260655493
+2017-12-01,Mercado,Dívida Externa,123.7888003279
+2017-12-01,Mercado,Dívida Interna,3435.4850639652
+2018-01-01,Banco Central,Dívida Interna,1670.28476334385
+2018-01-01,Mercado,Dívida Externa,122.83886028747
+2018-01-01,Mercado,Dívida Interna,3405.46296422194
+2018-02-01,Banco Central,Dívida Interna,1674.25761243566
+2018-02-01,Mercado,Dívida Externa,125.58140330833
+2018-02-01,Mercado,Dívida Interna,3456.5597184091
+2018-03-01,Banco Central,Dívida Interna,1723.08477702241
+2018-03-01,Mercado,Dívida Externa,128.90019546148
+2018-03-01,Mercado,Dívida Interna,3507.42405223463
+2018-04-01,Banco Central,Dívida Interna,1740.30365275953
+2018-04-01,Mercado,Dívida Externa,134.0848212562
+2018-04-01,Mercado,Dívida Interna,3524.41985772014
+2018-05-01,Banco Central,Dívida Interna,1753.4420187077
+2018-05-01,Mercado,Dívida Externa,142.96710966521
+2018-05-01,Mercado,Dívida Interna,3573.74768621379
+2018-06-01,Banco Central,Dívida Interna,1769.5485851108099
+2018-06-01,Mercado,Dívida Externa,146.78906781949
+2018-06-01,Mercado,Dívida Interna,3607.30853293543
+2018-07-01,Banco Central,Dívida Interna,1754.06125764653
+2018-07-01,Mercado,Dívida Externa,141.33067242956
+2018-07-01,Mercado,Dívida Interna,3607.55597581974
+2018-08-01,Banco Central,Dívida Interna,1744.89629337257
+2018-08-01,Mercado,Dívida Externa,154.75678188234
+2018-08-01,Mercado,Dívida Interna,3630.9120794239197
+2018-09-01,Banco Central,Dívida Interna,1781.94991302452
+2018-09-01,Mercado,Dívida Externa,151.13389277126998
+2018-09-01,Mercado,Dívida Interna,3628.35945416374
+2018-10-01,Banco Central,Dívida Interna,1762.99323062648
+2018-10-01,Mercado,Dívida Externa,140.95879826914
+2018-10-01,Mercado,Dívida Interna,3622.08886639951
+2018-11-01,Banco Central,Dívida Interna,1773.17562939049
+2018-11-01,Mercado,Dívida Externa,146.97405737802998
+2018-11-01,Mercado,Dívida Interna,3679.7719150438
+2018-12-01,Banco Central,Dívida Interna,1794.26382480345
+2018-12-01,Mercado,Dívida Externa,148.21335293031
+2018-12-01,Mercado,Dívida Interna,3728.85719902327
+2019-01-01,Banco Central,Dívida Interna,1795.81764834507
+2019-01-01,Mercado,Dívida Externa,138.81543669858
+2019-01-01,Mercado,Dívida Interna,3669.45590720002
+2019-02-01,Banco Central,Dívida Interna,1821.31981950718
+2019-02-01,Mercado,Dívida Externa,141.92884953668
+2019-02-01,Mercado,Dívida Interna,3731.61195713381
+2019-03-01,Banco Central,Dívida Interna,1819.02681128698
+2019-03-01,Mercado,Dívida Externa,153.71249585649
+2019-03-01,Mercado,Dívida Interna,3764.2500976746
+2019-04-01,Banco Central,Dívida Interna,1844.26227508076
+2019-04-01,Mercado,Dívida Externa,155.30114151077
+2019-04-01,Mercado,Dívida Interna,3723.39417820453
+2019-05-01,Banco Central,Dívida Interna,1815.14104327411
+2019-05-01,Mercado,Dívida Externa,155.55165001922
+2019-05-01,Mercado,Dívida Interna,3735.30479162047
+2019-06-01,Banco Central,Dívida Interna,1826.87412807292
+2019-06-01,Mercado,Dívida Externa,151.69171507003
+2019-06-01,Mercado,Dívida Interna,3826.3072219854103
+2019-07-01,Banco Central,Dívida Interna,1789.058419276
+2019-07-01,Mercado,Dívida Externa,146.85930467963001
+2019-07-01,Mercado,Dívida Interna,3846.34566208891
+2019-08-01,Banco Central,Dívida Interna,1808.5558525596
+2019-08-01,Mercado,Dívida Externa,160.8843512809
+2019-08-01,Mercado,Dívida Interna,3913.30607993539
+2019-09-01,Banco Central,Dívida Interna,1819.49943978219
+2019-09-01,Mercado,Dívida Externa,162.50088503045
+2019-09-01,Mercado,Dívida Interna,3993.30814667952
+2019-10-01,Banco Central,Dívida Interna,1807.49650826902
+2019-10-01,Mercado,Dívida Externa,154.72164316993
+2019-10-01,Mercado,Dívida Interna,3966.13248582199
+2019-11-01,Banco Central,Dívida Interna,1853.19712030653
+2019-11-01,Mercado,Dívida Externa,171.52225292138
+2019-11-01,Mercado,Dívida Interna,4033.9076552781
+2019-12-01,Banco Central,Dívida Interna,1888.70208931676
+2019-12-01,Mercado,Dívida Externa,165.68019203042002
+2019-12-01,Mercado,Dívida Interna,4083.22929969677
+2020-01-01,Banco Central,Dívida Interna,1890.79364048171
+2020-01-01,Mercado,Dívida Externa,172.07111988662
+2020-01-01,Mercado,Dívida Interna,4057.54725916058
+2020-02-01,Banco Central,Dívida Interna,1901.57600989582
+2020-02-01,Mercado,Dívida Externa,181.07272750082998
+2020-02-01,Mercado,Dívida Interna,4099.95840393326
+2020-03-01,Banco Central,Dívida Interna,1857.25410576452
+2020-03-01,Mercado,Dívida Externa,208.28946521843
+2020-03-01,Mercado,Dívida Interna,4006.50151192737
+2020-04-01,Banco Central,Dívida Interna,1920.83817537212
+2020-04-01,Mercado,Dívida Externa,217.1069379089
+2020-04-01,Mercado,Dívida Interna,3943.70376016314
+2020-05-01,Banco Central,Dívida Interna,1922.24789733356
+2020-05-01,Mercado,Dívida Externa,217.99930611518
+2020-05-01,Mercado,Dívida Interna,4032.9250469652397
+2020-06-01,Banco Central,Dívida Interna,1931.34956500403
+2020-06-01,Mercado,Dívida Externa,239.02760904149
+2020-06-01,Mercado,Dívida Interna,4150.90918977661
+2020-07-01,Banco Central,Dívida Interna,1877.52159272941
+2020-07-01,Mercado,Dívida Externa,226.12895287366
+2020-07-01,Mercado,Dívida Interna,4118.4628014588
+2020-08-01,Banco Central,Dívida Interna,1866.81280244062
+2020-08-01,Mercado,Dívida Externa,238.25499855406
+2020-08-01,Mercado,Dívida Interna,4174.16376700394
+2020-09-01,Banco Central,Dívida Interna,1869.72723868848
+2020-09-01,Mercado,Dívida Externa,245.89369233999
+2020-09-01,Mercado,Dívida Interna,4280.91525129499
+2020-10-01,Banco Central,Dívida Interna,1906.12160354556
+2020-10-01,Mercado,Dívida Externa,251.59381517331
+2020-10-01,Mercado,Dívida Interna,4386.95374542878
+2020-11-01,Banco Central,Dívida Interna,1910.91944732693
+2020-11-01,Mercado,Dívida Externa,234.5675454405
+2020-11-01,Mercado,Dívida Interna,4553.41046968836
+2020-12-01,Banco Central,Dívida Interna,1925.7770956520399
+2020-12-01,Mercado,Dívida Externa,243.45399380384
+2020-12-01,Mercado,Dívida Interna,4766.16168884295
+2021-01-01,Banco Central,Dívida Interna,1887.96209304977
+2021-01-01,Mercado,Dívida Externa,237.88333696531
+2021-01-01,Mercado,Dívida Interna,4821.4888136917
+2021-02-01,Banco Central,Dívida Interna,1921.03550990004
+2021-02-01,Mercado,Dívida Externa,247.92877936466
+2021-02-01,Mercado,Dívida Interna,4950.65907539166
+2021-03-01,Banco Central,Dívida Interna,1936.55289621277
+2021-03-01,Mercado,Dívida Externa,255.45849701827
+2021-03-01,Mercado,Dívida Interna,4987.12993551961
+2021-04-01,Banco Central,Dívida Interna,1961.68058238832
+2021-04-01,Mercado,Dívida Externa,236.9989981965
+2021-04-01,Mercado,Dívida Interna,4852.30367873258
+2021-05-01,Banco Central,Dívida Interna,1967.38679897953
+2021-05-01,Mercado,Dívida Externa,230.7466150589
+2021-05-01,Mercado,Dívida Interna,4940.4866588777995
+2021-06-01,Banco Central,Dívida Interna,1980.58942241191
+2021-06-01,Mercado,Dívida Externa,226.67351237656
+2021-06-01,Mercado,Dívida Interna,5103.26816380961
+2021-07-01,Banco Central,Dívida Interna,1962.8275086989802
+2021-07-01,Mercado,Dívida Externa,240.87156071534
+2021-07-01,Mercado,Dívida Interna,5155.09408799059
+2021-08-01,Banco Central,Dívida Interna,1970.1837603198
+2021-08-01,Mercado,Dívida Externa,243.50577120580002
+2021-08-01,Mercado,Dívida Interna,5237.24211475488
+2021-09-01,Banco Central,Dívida Interna,1975.85892393513
+2021-09-01,Mercado,Dívida Externa,257.70125536812
+2021-09-01,Mercado,Dívida Interna,5185.70282430858
+2021-10-01,Banco Central,Dívida Interna,1996.6832125971
+2021-10-01,Mercado,Dívida Externa,267.40709524859
+2021-10-01,Mercado,Dívida Interna,5105.7023856068
+2021-11-01,Banco Central,Dívida Interna,2006.42852143124
+2021-11-01,Mercado,Dívida Externa,266.30308209924
+2021-11-01,Mercado,Dívida Interna,5232.52932467032
+2021-12-01,Banco Central,Dívida Interna,2029.39403472648
+2021-12-01,Mercado,Dívida Externa,264.71981039133
+2021-12-01,Mercado,Dívida Interna,5348.93604998806
+2022-01-01,Banco Central,Dívida Interna,2022.61114161984
+2022-01-01,Mercado,Dívida Externa,249.43747041345
+2022-01-01,Mercado,Dívida Interna,5366.7834668961
+2022-02-01,Banco Central,Dívida Interna,2030.25500455088
+2022-02-01,Mercado,Dívida Externa,240.01488658341
+2022-02-01,Mercado,Dívida Interna,5490.3166308501
+2022-03-01,Banco Central,Dívida Interna,2050.47473513869
+2022-03-01,Mercado,Dívida Externa,222.49921114555
+2022-03-01,Mercado,Dívida Interna,5342.4493883944
+2022-04-01,Banco Central,Dívida Interna,2074.0723008357
+2022-04-01,Mercado,Dívida Externa,230.19470214208
+2022-04-01,Mercado,Dívida Interna,5359.7567303426
+2022-05-01,Banco Central,Dívida Interna,2085.80769346506
+2022-05-01,Mercado,Dívida Externa,226.26714013676
+2022-05-01,Mercado,Dívida Interna,5475.96419518424
+2022-06-01,Banco Central,Dívida Interna,2104.74748417981
+2022-06-01,Mercado,Dívida Externa,250.1650714221
+2022-06-01,Mercado,Dívida Interna,5595.37903583331
+2022-07-01,Banco Central,Dívida Interna,2098.95898348759
+2022-07-01,Mercado,Dívida Externa,245.80596347531
+2022-07-01,Mercado,Dívida Interna,5558.58570111135
+2022-08-01,Banco Central,Dívida Interna,2091.60670589612
+2022-08-01,Mercado,Dívida Externa,245.8522208052
+2022-08-01,Mercado,Dívida Interna,5535.51533301652
+2022-09-01,Banco Central,Dívida Interna,2044.7298421385099
+2022-09-01,Mercado,Dívida Externa,256.4733887448
+2022-09-01,Mercado,Dívida Interna,5495.51048905992
+2022-10-01,Banco Central,Dívida Interna,2071.94672223148
+2022-10-01,Mercado,Dívida Externa,249.99639240131
+2022-10-01,Mercado,Dívida Interna,5528.27886445276
+2022-11-01,Banco Central,Dívida Interna,2126.41150637452
+2022-11-01,Mercado,Dívida Externa,254.73235762699
+2022-11-01,Mercado,Dívida Interna,5616.10630587059
+2022-12-01,Banco Central,Dívida Interna,2155.46363579886
+2022-12-01,Mercado,Dívida Externa,252.45420418455
+2022-12-01,Mercado,Dívida Interna,5698.97523631753
+2023-01-01,Banco Central,Dívida Interna,2155.73253179554
+2023-01-01,Mercado,Dívida Externa,233.98261100688
+2023-01-01,Mercado,Dívida Interna,5534.74508936565
+2023-02-01,Banco Central,Dívida Interna,2182.32918098686
+2023-02-01,Mercado,Dívida Externa,239.14497837309
+2023-02-01,Mercado,Dívida Interna,5616.88881874464
+2023-03-01,Banco Central,Dívida Interna,2206.02540782668
+2023-03-01,Mercado,Dívida Externa,234.35765131691
+2023-03-01,Mercado,Dívida Interna,5658.3450404111
+2023-04-01,Banco Central,Dívida Interna,2225.31576847425
+2023-04-01,Mercado,Dívida Externa,242.41660049933
+2023-04-01,Mercado,Dívida Interna,5790.404127638
+2023-05-01,Banco Central,Dívida Interna,2235.20745467935
+2023-05-01,Mercado,Dívida Externa,246.78042488537
+2023-05-01,Mercado,Dívida Interna,5767.18246455843
+2023-06-01,Banco Central,Dívida Interna,2252.93244617589
+2023-06-01,Mercado,Dívida Externa,234.04429877971
+2023-06-01,Mercado,Dívida Interna,5957.41875934121
+2023-07-01,Banco Central,Dívida Interna,2248.29967921028
+2023-07-01,Mercado,Dívida Externa,228.9596455366
+2023-07-01,Mercado,Dívida Interna,5913.25965354113
+2023-08-01,Banco Central,Dívida Interna,2256.28859103552
+2023-08-01,Mercado,Dívida Externa,237.46319878347
+2023-08-01,Mercado,Dívida Interna,6027.91977279597
+2023-09-01,Banco Central,Dívida Interna,2271.54797920819
+2023-09-01,Mercado,Dívida Externa,241.77922101973
+2023-09-01,Mercado,Dívida Interna,5834.08029934201
+2023-10-01,Banco Central,Dívida Interna,2273.12501763892
+2023-10-01,Mercado,Dívida Externa,244.32484368541
+2023-10-01,Mercado,Dívida Interna,5927.6652236889795
+2023-11-01,Banco Central,Dívida Interna,2296.24492092435
+2023-11-01,Mercado,Dívida Externa,250.0469956595
+2023-11-01,Mercado,Dívida Interna,6075.05271783149
+2023-12-01,Banco Central,Dívida Interna,2318.58041289811
+2023-12-01,Mercado,Dívida Externa,251.46361793883
+2023-12-01,Mercado,Dívida Interna,6268.86504947506
+2024-01-01,Banco Central,Dívida Interna,2364.08703170203
+2024-01-01,Mercado,Dívida Externa,273.82610214724
+2024-01-01,Mercado,Dívida Interna,6176.03361653735
+2024-02-01,Banco Central,Dívida Interna,2371.7752815498598
+2024-02-01,Mercado,Dívida Externa,276.13697874211
+2024-02-01,Mercado,Dívida Interna,6319.15460856724
+2024-03-01,Banco Central,Dívida Interna,2399.05910227023
+2024-03-01,Mercado,Dívida Externa,276.72890724234003
+2024-03-01,Mercado,Dívida Interna,6361.6451609464
+2024-04-01,Banco Central,Dívida Interna,2415.76920840296
+2024-04-01,Mercado,Dívida Externa,280.51192005751
+2024-04-01,Mercado,Dívida Interna,6423.44048385026
+2024-05-01,Banco Central,Dívida Interna,2426.12119233869
+2024-05-01,Mercado,Dívida Externa,285.47411388411
+2024-05-01,Mercado,Dívida Interna,6626.56646516386
+2024-06-01,Banco Central,Dívida Interna,2447.36897218483
+2024-06-01,Mercado,Dívida Externa,313.60768266887
+2024-06-01,Mercado,Dívida Interna,6754.24108566528
+2024-07-01,Banco Central,Dívida Interna,2464.77665864844
+2024-07-01,Mercado,Dívida Externa,317.63265752361997
+2024-07-01,Mercado,Dívida Interna,6822.0486814756805
+2024-08-01,Banco Central,Dívida Interna,2446.95141257241
+2024-08-01,Mercado,Dívida Externa,319.16979757808
+2024-08-01,Mercado,Dívida Interna,6716.34113479632
+2024-09-01,Banco Central,Dívida Interna,2461.19562008797
+2024-09-01,Mercado,Dívida Externa,307.33981226022
+2024-09-01,Mercado,Dívida Interna,6640.37163664411
+2024-10-01,Banco Central,Dívida Interna,2479.84395294761
+2024-10-01,Mercado,Dívida Externa,325.21793101065
+2024-10-01,Mercado,Dívida Interna,6747.71434917226
+2024-11-01,Banco Central,Dívida Interna,2489.7789627934
+2024-11-01,Mercado,Dívida Externa,340.75730967661
+2024-11-01,Mercado,Dívida Interna,6863.34484699343
+2024-12-01,Banco Central,Dívida Interna,2517.51268942625
+2024-12-01,Mercado,Dívida Externa,349.19333668173
+2024-12-01,Mercado,Dívida Interna,6966.87937856405
+2025-01-01,Banco Central,Dívida Interna,2629.09002618378
+2025-01-01,Mercado,Dívida Externa,301.80805912876997
+2025-01-01,Mercado,Dívida Interna,6950.87307352896
+2025-02-01,Banco Central,Dívida Interna,2643.22763276506
+2025-02-01,Mercado,Dívida Externa,314.34439235011
+2025-02-01,Mercado,Dívida Interna,7177.67006420138
+2025-03-01,Banco Central,Dívida Interna,2672.93441737945
+2025-03-01,Mercado,Dívida Externa,309.5431903061
+2025-03-01,Mercado,Dívida Interna,7198.76878994555
+2025-04-01,Banco Central,Dívida Interna,2692.23582153677
+2025-04-01,Mercado,Dívida Externa,306.13407575306
+2025-04-01,Mercado,Dívida Interna,7310.49041608529
+2025-05-01,Banco Central,Dívida Interna,2696.10682667455
+2025-05-01,Mercado,Dívida Externa,309.16758162774
+2025-05-01,Mercado,Dívida Interna,7361.32393199541
+2025-06-01,Banco Central,Dívida Interna,2735.32875035109
+2025-06-01,Mercado,Dívida Externa,302.12220606961
+2025-06-01,Mercado,Dívida Interna,7581.07503010122
+2025-07-01,Banco Central,Dívida Interna,2750.56312447527
+2025-07-01,Mercado,Dívida Externa,308.05174626132
+2025-07-01,Mercado,Dívida Interna,7630.97485759043
+2025-08-01,Banco Central,Dívida Interna,2774.38551635166
+2025-08-01,Mercado,Dívida Externa,300.22895810768
+2025-08-01,Mercado,Dívida Interna,7844.76534252286
+2025-09-01,Banco Central,Dívida Interna,2792.6575534996
+2025-09-01,Mercado,Dívida Externa,301.52811319992
+2025-09-01,Mercado,Dívida Interna,7820.48288076924
+2025-10-01,Banco Central,Dívida Interna,2777.59231800308
+2025-10-01,Mercado,Dívida Externa,305.06198828403
+2025-10-01,Mercado,Dívida Interna,7948.45106208399
+2025-11-01,Banco Central,Dívida Interna,2813.09689582836
+2025-11-01,Mercado,Dívida Externa,314.94882642435
+2025-11-01,Mercado,Dívida Interna,8165.38767847096
+2025-12-01,Banco Central,Dívida Interna,2860.6077174431803
+2025-12-01,Mercado,Dívida Externa,326.06515786335
+2025-12-01,Mercado,Dívida Interna,8309.02806868984
+2026-01-01,Banco Central,Dívida Interna,2854.83347764615
+2026-01-01,Mercado,Dívida Externa,310.59252152767
+2026-01-01,Mercado,Dívida Interna,8330.53373446239
+2026-02-01,Banco Central,Dívida Interna,2867.79741333871
+2026-02-01,Mercado,Dívida Externa,329.64668335339
+2026-02-01,Mercado,Dívida Interna,8511.09977745835
+2026-03-01,Banco Central,Dívida Interna,2893.22380891614
+2026-03-01,Mercado,Dívida Externa,331.64265210266
+2026-03-01,Mercado,Dívida Interna,8301.79851821832
+2026-04-01,Banco Central,Dívida Interna,2916.48357197082
+2026-04-01,Mercado,Dívida Externa,335.88385766226
+2026-04-01,Mercado,Dívida Interna,8462.37577163033
+2026-05-01,Banco Central,Dívida Interna,2934.15921681457
+2026-05-01,Mercado,Dívida Externa,340.49219833682
+2026-05-01,Mercado,Dívida Interna,8692.16331870884
+2026-06-01,Banco Central,Dívida Interna,2971.01574240433
+2026-06-01,Mercado,Dívida Externa,347.71431784788
+2026-06-01,Mercado,Dívida Interna,8920.67804966727
+2026-07-01,Banco Central,Dívida Interna,2979.60489867891
+2026-07-01,Mercado,Dívida Externa,340.06350629112
+2026-07-01,Mercado,Dívida Interna,8948.71676508647

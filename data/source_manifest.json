@@ -1,0 +1,73 @@
+{
+  "coletado_em": "2026-10-07",
+  "fuso_horario": "America/Fortaleza",
+  "itens": [
+    {
+      "arquivo": "data/raw/tesouro/estoque-dpf-resumo.xlsx",
+      "url": "https://www.tesourotransparente.gov.br/ckan/dataset/0998f610-bc25-4ce3-b32c-a873447500c2/resource/0402cb77-5e4c-4414-966f-0e87d802a29a/download/estoque-da-divida-publica-federal.xlsx",
+      "bytes": 148450,
+      "sha256": "65222bdb23acabafa56b0de675716cd075ed42574e88bcf4f05dee8572d43023"
+    },
+    {
+      "arquivo": "data/raw/tesouro/estoquedpf.csv",
+      "url": "https://www.tesourotransparente.gov.br/ckan/dataset/0998f610-bc25-4ce3-b32c-a873447500c2/resource/b6280ed3-ef7e-4569-954a-bded97c2c8a1/download/estoquedpf.csv",
+      "bytes": 12118195,
+      "sha256": "b1f3756d285f3f2e506deec6fd4ddfcc6a7f54941636855ef1e70d5d5b8ee742"
+    },
+    {
+      "arquivo": "data/raw/tesouro/fatores-variacao-dpf.xlsx",
+      "url": "https://www.tesourotransparente.gov.br/ckan/dataset/fc2ea6ab-2130-4525-98f6-8bf04407f7fe/resource/ef6a250b-75bf-44c7-8c9f-8a746b6f469e/download/fatores-de-variacao-da-divida-publica-federal.xlsx",
+      "bytes": 151325,
+      "sha256": "313b4335de90ca456e2213c37d205346b119293bd1985afeefc2cb6f69b7e2b0"
+    },
+    {
+      "arquivo": "data/raw/tesouro/emissoes-resgates-dpf.xlsx",
+      "url": "https://www.tesourotransparente.gov.br/ckan/dataset/48a31b6b-034a-473b-be7d-228be30437a1/resource/bf69babd-ac07-40ce-90ff-c8e07ec8c8bf/download/emissoes-e-resgates---divida-publica-federal.xlsx",
+      "bytes": 137349,
+      "sha256": "755768f65cbee8ac86828426bd5751f2f80ec0dc7785a9fb4f96da43542d314b"
+    },
+    {
+      "arquivo": "data/raw/bcb/dbgg_pib.json",
+      "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.13762/dados?formato=json",
+      "bytes": 16118,
+      "sha256": "06a7f038e94653d52cbac08c71e02198be4fa8978db83cf0dfb24774cc3ce6f9"
+    },
+    {
+      "arquivo": "data/raw/bcb/divida_liquida_gg_pib.json",
+      "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.4536/dados?formato=json",
+      "bytes": 20130,
+      "sha256": "29baef926a0f4eead142a1b98923dddc96a189e46fdf299585df50a1332f586f"
+    },
+    {
+      "arquivo": "data/raw/bcb/ipca_mensal.json",
+      "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.433/dados?formato=json",
+      "bytes": 37644,
+      "sha256": "a1a59fab83acfc81c91f33d2842086d613dcd5b68b9ea0c44a155e8ae76d38d6"
+    },
+    {
+      "arquivo": "data/raw/siop/execucao_por_funcao_2001_2025.json",
+      "url": "https://www1.siop.planejamento.gov.br/sparql/",
+      "documentacao": "https://orcamento.dados.gov.br/siopdoc/doku.php/acesso_publico:dados_abertos/",
+      "bytes": 70095,
+      "sha256": "c125aa460a06d634d380bb56ed6a2b751d0e3491f042aad6523670a4841ba7b2"
+    },
+    {
+      "arquivo": "data/raw/tributos/arrecadacao_receitas_federais_1994_2025.xlsx",
+      "url": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/dados-abertos/receitadata/arrecadacao/serie-historica",
+      "bytes": 351698,
+      "sha256": "691012ee31835c748e8b9782f985a040aee1405505dd7a7a0ac983e49e75a269"
+    },
+    {
+      "arquivo": "data/raw/tributos/arrecadacao_federal_2026_ate_agosto.xlsx",
+      "url": "https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/relatorios/arrecadacao-federal/2026/analise-mensal-ago-2026-anexo.xlsx/@@download/file",
+      "bytes": 235023,
+      "sha256": "568b00cf02c6487820dbafaa55dba65ec09ed2c4f76bbcdf381ac0478b164bc6"
+    },
+    {
+      "arquivo": "data/raw/tributos/carga_tributaria_governo_geral_2025.xlsx",
+      "url": "https://thot-arquivos.tesouro.gov.br/publicacao-anexo/28024",
+      "bytes": 96815,
+      "sha256": "d699faf70c8ccd0660759bec0efc0d16420a5fe42f1ddc6bad73b825ef5c122b"
+    }
+  ]
+}

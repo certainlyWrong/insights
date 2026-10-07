@@ -1,0 +1,25 @@
+[project]
+name = "insights"
+version = "0.1.0"
+description = "Catálogo e análise local de dados públicos brasileiros"
+readme = "README.md"
+authors = [
+    { name = "Adriano R. de Sousa", email = "adrianorodriguesdsousa@ufpi.edu.br" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "duckdb>=1.2",
+    "httpx>=0.27",
+    "ipykernel>=7.4.0",
+    "matplotlib>=3.11.2",
+    "notebook>=7.6.3",
+    "openpyxl>=3.1.5",
+    "pandas>=3.0.6",
+]
+
+[project.scripts]
+insights = "insights:main"
+
+[build-system]
+requires = ["uv_build>=0.11.8,<0.12.0"]
+build-backend = "uv_build"
