@@ -6,6 +6,18 @@
     <meta name="theme-color" content="#101c2f" />
     <meta name="description" content="Dados oficiais e análises sobre a dívida pública e o orçamento federal brasileiro." />
     <title>Insights Públicos — Brasil</title>
+    <script>
+      try {
+        const originalUrl = sessionStorage.getItem("insights-pages-redirect");
+        if (originalUrl) {
+          sessionStorage.removeItem("insights-pages-redirect");
+          const target = new URL(originalUrl);
+          if (target.origin === location.origin && target.pathname.startsWith("/insights/")) {
+            history.replaceState(null, "", target.pathname + target.search + target.hash);
+          }
+        }
+      } catch (_) { /* A navegação continua funcional se o armazenamento estiver desativado. */ }
+    </script>
   </head>
   <body>
     <div id="app"></div>

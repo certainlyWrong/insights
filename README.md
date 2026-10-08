@@ -2,7 +2,7 @@
 
 **Dados públicos para entender as contas, as políticas e a economia do Brasil.**
 
-Um projeto local de pesquisa que reúne fontes oficiais, séries históricas, notebooks reproduzíveis e um painel interativo. O foco principal é a **dívida pública brasileira**, com estudos complementares sobre gastos, PIB, impostos, programas sociais e poder de compra.
+Um projeto de pesquisa que reúne fontes oficiais, séries históricas, notebooks reproduzíveis e um painel interativo. O foco principal é a **dívida pública brasileira**, com estudos complementares sobre gastos, PIB, impostos, programas sociais e poder de compra.
 
 <p align="center">
   <img src="docs/images/overview.png" alt="Visão geral do painel Insights Brasil" width="100%">
@@ -15,7 +15,13 @@ Um projeto local de pesquisa que reúne fontes oficiais, séries históricas, no
 </p>
 <p align="center"><em>Dívida pública e PIB — cada página apresenta métricas, séries e explicações de método.</em></p>
 
-## Comece em um comando
+## Acesse o painel
+
+O site está publicado no GitHub Pages: **[certainlywrong.github.io/insights](https://certainlywrong.github.io/insights/)**. Ele funciona diretamente no navegador e carrega os dados incluídos no projeto, sem consultar APIs externas durante o uso.
+
+Para executar o painel localmente ou preparar dados atualizados, use o inicializador abaixo.
+
+## Execute localmente
 
 Requisitos: [uv](https://docs.astral.sh/uv/) e Node.js com npm.
 
@@ -34,7 +40,7 @@ O inicializador prepara as dependências, atualiza os dados locais do painel e a
 - **Impostos:** arrecadação federal mensal e carga tributária anual do Governo Geral.
 - **Poder de compra:** variação dos preços pelo IPCA desde julho de 1994.
 
-Os gráficos do site têm explicações sobre o que medem, como interpretar os resultados, por que importam e o que estudar para aprofundar a análise. Os dados são preparados localmente; o painel aberto não depende de chamadas a APIs.
+Os gráficos do site têm explicações sobre o que medem, como interpretar os resultados, por que importam e o que estudar para aprofundar a análise.
 
 ## Organização do projeto
 
@@ -95,4 +101,6 @@ O PDF é gerado a partir de um notebook de apresentação, com gráficos e expli
 
 ## Publicar no GitHub Pages
 
-O workflow `.github/workflows/deploy-pages.yml` compila e publica o site automaticamente quando há mudanças em `web/` na branch `main`. Também pode ser iniciado manualmente na aba **Actions**. Na primeira publicação, configure **Settings → Pages → Build and deployment → Source: GitHub Actions**. O site será disponibilizado em <https://certainlyWrong.github.io/insights/> após a conclusão do workflow.
+O workflow `.github/workflows/deploy-pages.yml` compila e publica o site automaticamente quando há mudanças em `web/` na branch `main`. Também pode ser iniciado manualmente na aba **Actions**. Para atualizar os dados publicados, regenere o bundle com `uv run python web/scripts/build_data.py` e inclua as alterações em `web/` no commit; o workflow fará uma nova publicação.
+
+Cada estudo tem um endereço direto, por exemplo <https://certainlywrong.github.io/insights/divida-publica> e <https://certainlywrong.github.io/insights/pib>. A navegação entre dívida, juros, PIB, poder de compra, impostos, orçamento, programas sociais, explorador e fontes também é feita pelo menu do painel.

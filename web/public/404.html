@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Abrindo Insights Brasil</title>
+    <script>
+      try {
+        const basePath = "/insights/";
+        if (location.pathname.startsWith(basePath) && location.pathname !== `${basePath}404.html`) {
+          sessionStorage.setItem("insights-pages-redirect", location.href);
+          location.replace(basePath);
+        }
+      } catch (_) {
+        location.replace("/insights/");
+      }
+    </script>
+  </head>
+  <body>
+    <p>Redirecionando para o painel…</p>
+  </body>
+</html>

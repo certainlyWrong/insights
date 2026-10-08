@@ -1,0 +1,19 @@
+<script setup>
+import { inject, toRefs } from "vue";
+import { ArrowUpRight } from "@lucide/vue";
+import TrendChart from "../components/TrendChart.vue";
+const { page, chartStart, data, activeData, latestYear, spendByFunction, pretty, spendingTrend, capitalTrend, chartGuides, go } = toRefs(inject("dashboard"));
+</script>
+
+<template>
+<section class="content inner-content">
+          <div class="page-intro"><div><div class="eyebrow"><span></span> EXECUÇÃO DO ORÇAMENTO FEDERAL</div><h1 tabindex="-1">Saúde. Educação. <em>Segurança.</em></h1><p>Quanto foi pago em cada função — e qual parcela foi registrada como investimento de capital (GND 4).</p></div><aside>ÚLTIMO EXERCÍCIO<strong>{{ latestYear }}</strong></aside></div>
+          <div class="spending-cards"><article v-for="name in ['Saúde', 'Educação', 'Segurança Pública']" :key="name" class="spend-card" :class="name === 'Saúde' ? 'health-card' : name === 'Educação' ? 'education-card' : 'security-card'"><span>{{ name.toUpperCase() }} · PAGO {{ latestYear }}</span><strong>R$ {{ pretty((spendByFunction[name]?.['despesa_paga_r$'] || 0) / 1e9, 2) }} bi</strong><small>GND 4 · R$ {{ pretty((spendByFunction[name]?.['gnd4_investimento_pago_r$'] || 0) / 1e9, 2) }} bi</small></article></div>
+          <div class="stacked-panels">
+            <article class="panel"><div class="panel-heading"><div><span class="kicker">{{ chartStart === '2012' ? '2012 EM DIANTE' : '25 EXERCÍCIOS' }} · VALORES REAIS</span><h3>Execução paga por função</h3></div><span class="unit-pill">IPCA · R$ de 2025</span></div><TrendChart :option="spendingTrend" :guide="chartGuides.spending" height="380px" /><p class="panel-caption">O total inclui pessoal, custeio, transferências e capital. Valores anuais ajustados pelo IPCA.</p></article>
+            <article class="panel"><div class="panel-heading"><div><span class="kicker">GND 4 · {{ chartStart === '2012' ? 'DESDE 2012' : 'SÉRIE HISTÓRICA' }}</span><h3>Investimento de capital pago</h3></div><span class="unit-pill">IPCA · R$ de 2025</span></div><TrendChart :option="capitalTrend" :guide="chartGuides.capital" height="340px" /><p class="panel-caption">A rubrica GND 4 é uma parte do gasto total da função; não representa todo o financiamento da área.</p></article>
+            <article class="panel data-jump"><div><span class="kicker">SÉRIE ANUAL COMPLETA</span><h3>75 registros · 3 funções · 2001–2025</h3><p>Inclui despesas pagas e liquidadas, além do GND 4 em cada função.</p></div><button @click="activeData = 'spending'; go('explorer')">Abrir tabela anual <b><ArrowUpRight class="ui-icon" :size="12" :stroke-width="2" /></b></button></article>
+            <article class="panel methods"><div class="panel-heading"><div><span class="kicker">MÉTODO E EXEMPLO</span><h3>Como ler execução e valores reais</h3></div></div><div class="method-row"><span>01</span><div><strong>Despesa paga</strong><p>É o desembolso registrado no exercício. Exemplo: em {{ latestYear }}, {{ spendByFunction['Saúde']?.['despesa_paga_r$'] ? 'Saúde somou R$ ' + pretty(spendByFunction['Saúde']['despesa_paga_r$']/1e9, 2) + ' bilhões pagos em valores correntes' : 'a despesa paga é a soma disponibilizada pelo SIOP' }}. Não confundir com dotação autorizada ou empenho.</p></div></div><div class="method-row"><span>02</span><div><strong>Correção pelo IPCA</strong><p>Para comparar poder de compra, cada valor nominal do ano t é multiplicado pela razão entre o índice médio de 2025 e o índice médio do ano t. Assim, R$ de anos diferentes ficam expressos em preços médios de 2025; não é crescimento nominal.</p></div></div><div class="method-row"><span>03</span><div><strong>GND 4 — Investimentos</strong><p>É uma parcela de capital dentro da função. A proporção GND 4 / total pago ajuda a visualizar sua participação, mas não mede a qualidade, conclusão ou resultado dos projetos.</p></div></div></article>
+          </div>
+        </section>
+</template>

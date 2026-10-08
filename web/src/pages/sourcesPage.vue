@@ -1,0 +1,26 @@
+<script setup>
+import { inject, toRefs } from "vue";
+import { ExternalLink, Info } from "@lucide/vue";
+const { page, data, dataset } = toRefs(inject("dashboard"));
+</script>
+
+<template>
+<section class="content inner-content">
+          <div class="page-intro"><div><div class="eyebrow"><span></span> TRANSPARÊNCIA E CONTEXTO</div><h1 tabindex="-1">De onde vêm <em>os dados.</em></h1><p>Fontes primárias, perímetros e decisões de leitura usados no painel.</p></div></div>
+          <div class="sources-layout">
+            <article class="panel methods"><div class="panel-heading"><div><span class="kicker">COMO LER</span><h3>Conceitos com escopos diferentes</h3></div></div>
+              <div class="method-row"><span>01</span><div><strong>Dívida Pública Federal (DPF)</strong><p>Estoque sob responsabilidade do Tesouro Nacional, separado entre dívida interna e externa. Série agregada mensal desde dezembro de 2000.</p></div></div>
+              <div class="method-row"><span>02</span><div><strong>Juros apropriados na DPF</strong><p>Valor por competência publicado pelo Tesouro nos fatores de variação da dívida. É diferente de pagamento em caixa. A taxa apresentada é uma razão aproximada sobre o estoque médio anual, não o custo médio oficial da DPF.</p><a href="https://www.tesourotransparente.gov.br/ckan/dataset/fatores-de-variacao-da-divida-publica-federal" target="_blank" rel="noreferrer">Fatores de variação da DPF <ExternalLink class="ui-icon" :size="12" /></a></div></div>
+              <div class="method-row"><span>03</span><div><strong>DBGG e dívida líquida / PIB</strong><p>Séries do Banco Central que abrangem o governo geral, incluindo níveis subnacionais. Não são equivalentes à DPF.</p></div></div>
+              <div class="method-row"><span>04</span><div><strong>PIB — Contas Nacionais Trimestrais</strong><p>Valores correntes, índices encadeados de volume e taxas publicadas pelo IBGE. Crescimento nominal não é crescimento real. A série DBGG/PIB continua sendo o indicador publicado pelo Banco Central e não é recalculada com os valores do PIB desta página.</p><a href="https://sidra.ibge.gov.br/pesquisa/cnt/tabelas" target="_blank" rel="noreferrer">Tabelas do IBGE/SIDRA <ExternalLink class="ui-icon" :size="12" /></a></div></div>
+              <div class="method-row"><span>05</span><div><strong>Arrecadação federal e carga tributária</strong><p>A série mensal da Receita Federal soma receitas administradas pela RFB e por outros órgãos; o acumulado é apenas a soma dos meses publicados, sem projeção. A carga tributária do Tesouro é anual e cobre Governo Geral (União, estados e municípios), com escopo distinto.</p><a href="https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/dados-abertos/receitadata/arrecadacao/serie-historica" target="_blank" rel="noreferrer">Série histórica da Receita Federal <ExternalLink class="ui-icon" :size="12" /></a></div></div>
+              <div class="method-row"><span>03</span><div><strong>Execução por função</strong><p>Pagamentos do orçamento federal nas funções Saúde, Educação e Segurança Pública. Inclui gastos correntes e de capital.</p></div></div>
+              <div class="method-row"><span>04</span><div><strong>GND 4 — Investimentos</strong><p>Classificação de investimento de capital no orçamento. É um subconjunto do total pago na função, não um indicador de resultado.</p></div></div>
+              <div class="method-row"><span>05</span><div><strong>Programas sociais agregados</strong><p>A série anual do BPC separa pessoas com deficiência e pessoas idosas, com beneficiários e repasses. Bolsa Família é reportado em famílias; Auxílio Gás, por famílias atendidas em ciclos bimestrais. As unidades não são intercambiáveis e os públicos podem se sobrepor.</p></div></div>
+              <div class="method-row"><span>06</span><div><strong>Repasses sociais e valores reais</strong><p>O histórico do BPC está em valores nominais. A página social não o soma ao Bolsa Família nem ao Auxílio Gás e evita inferir efeito sobre pobreza ou bem-estar a partir do volume transferido.</p></div></div>
+            </article>
+            <div class="source-stack"><article v-for="(source, index) in data.sources" :key="source.name" class="source-card"><span>{{ String(index + 1).padStart(2, '0') }}</span><div><strong>{{ source.name }}</strong><small>Dados oficiais · fonte primária</small></div><a :href="source.url" target="_blank" rel="noreferrer" :aria-label="`Abrir fonte: ${source.name}`"><ExternalLink class="ui-icon" :size="13" /></a></article></div>
+          </div>
+          <div class="source-footer"><b><Info class="ui-icon" :size="14" /></b><p>Os dados tratados e os arquivos brutos ficam no diretório <code>data/</code>. A série do PIB foi coletada em {{ data.pib.source.collected_at.slice(0, 10) }}; outros conjuntos têm suas próprias datas de atualização. As fontes podem retificar as séries. O código GND 4 corresponde à rubrica Investimentos no orçamento federal.</p></div>
+        </section>
+</template>

@@ -20,6 +20,12 @@ npm run dev
 
 Abra exatamente o endereço `Local` mostrado por esse comando. Se já havia outro Vite em execução, encerre-o com `Ctrl+C` antes de iniciar este; quando a porta padrão está ocupada, o Vite escolhe outra porta. Depois de atualizar o código, faça uma recarga forçada no navegador (`Cmd+Shift+R` no macOS / `Ctrl+Shift+R` no Windows e Linux).
 
+## Navegação por rota
+
+As seções têm URLs diretas: `/` (Visão geral), `/divida-publica`, `/juros-da-divida`, `/pib`, `/poder-de-compra`, `/impostos`, `/orcamento-federal`, `/programas-sociais`, `/explorar-dados` e `/fontes-e-metodo`. O explorador mantém o conjunto escolhido na query string, por exemplo `/explorar-dados?dataset=pibQuarterly`.
+
+No GitHub Pages, `public/404.html` preserva as rotas limpas sob `/insights/` ao abrir ou atualizar um link direto. Em desenvolvimento, o fallback do Vite atende as rotas diretamente.
+
 Para compilar a versão estática:
 
 ```sh
