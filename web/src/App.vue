@@ -504,17 +504,34 @@ function toggleTheme() {
   localStorage.setItem("insights-theme", theme.value);
 }
 
+async function readAssetText(response) {
+  const bytes = await response.arrayBuffer();
+  const signature = new Uint8Array(bytes, 0, Math.min(2, bytes.byteLength));
+
+  // GitHub Pages serves .gz as application/gzip without Content-Encoding.
+  // In that case Fetch returns the compressed bytes, unlike Vite's dev server.
+  if (signature[0] === 0x1f && signature[1] === 0x8b) {
+    if (!("DecompressionStream" in window)) {
+      throw new Error("Este navegador não oferece suporte à leitura dos dados compactados.");
+    }
+    const decompressed = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"));
+    return new Response(decompressed).text();
+  }
+
+  // When a server sends Content-Encoding: gzip, Fetch decodes the response
+  // before exposing it here, so the bytes already contain the original text.
+  return new TextDecoder("utf-8").decode(bytes);
+}
+
 async function loadData() {
   try {
     const response = await fetch(dashboardUrl);
     if (!response.ok) throw new Error(`A base local não foi encontrada (HTTP ${response.status}).`);
-    // The .gz asset is served with Content-Encoding: gzip. Fetch decodes it
-    // automatically, so manually piping through DecompressionStream corrupts it.
-    data.value = await response.json();
+    data.value = JSON.parse(await readAssetText(response));
   } catch (e) {
     error.value = location.protocol === "file:"
       ? "Abra o painel por um servidor web. Na pasta web, execute npm run dev e acesse o endereço exibido no terminal."
-      : `${e.message} Gere os dados com uv run python web/scripts/build_data.py na raiz do projeto e reinicie o servidor web.`;
+      : `Não foi possível ler os dados do painel: ${e.message}. Atualize a página; se o problema persistir após uma nova publicação, confira o pacote em web/src/assets/data/.`;
   }
 }
 async function loadTitles() {
@@ -523,7 +540,7 @@ async function loadTitles() {
   try {
     const response = await fetch(titlesUrl);
     if (!response.ok) throw new Error(`O arquivo de títulos não foi encontrado (HTTP ${response.status}).`);
-    detailCsv.value = await response.text();
+    detailCsv.value = await readAssetText(response);
     detailRows.value = Papa.parse(detailCsv.value, { header: true, dynamicTyping: true, skipEmptyLines: true }).data;
     detailLoaded.value = true;
   } catch (e) {

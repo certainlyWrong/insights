@@ -33,6 +33,8 @@ O pacote em `src/assets/data/dashboard.json.gz` é gerado das tabelas de `../dat
 
 As posições individuais por título e vencimento são carregadas sob demanda de `src/assets/data/posicoes_por_titulo.csv.gz`; podem ser pesquisadas na página “Explorar dados” ou baixadas no formato original comprimido. A página **PIB** cobre as Contas Nacionais Trimestrais do IBGE desde 1996, com valores nominais, taxas reais oficiais, comparação semestral derivada, setores e componentes da despesa. A página **Impostômetro** mostra arrecadação federal mensal nominal desde 1994, com acumulado apenas até o último mês publicado, variação nominal em 12 meses e, separadamente, carga tributária anual do Governo Geral (União, estados e municípios). A página **Poder de compra** compara o nível de preços desde julho de 1994 pelo IPCA, separando inflação acumulada da perda de poder de compra e de variações cambiais. Para atualizar os dados, use as instruções de coleta e processamento em `../data/README.md` e regenere o pacote do painel.
 
+O bundle JSON e a tabela CSV são armazenados como `.gz` para reduzir o tamanho dos arquivos. O navegador detecta e descomprime esses assets quando necessário: servidores como o GitHub Pages podem entregá-los com tipo `application/gzip`, sem o cabeçalho `Content-Encoding` que faria a descompressão automática.
+
 Inicie a aplicação pelo servidor Vite (`npm run dev`) ou sirva o resultado de `npm run build` com um servidor web. Abrir `index.html` diretamente pelo sistema de arquivos (`file://`) não funciona porque o navegador bloqueia as requisições dos dados.
 
 O painel não faz chamadas a serviços externos em tempo de uso. Os links da página “Fontes e método” apontam para as publicações oficiais usadas na coleta.
