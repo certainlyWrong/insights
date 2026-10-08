@@ -1,4 +1,4 @@
-# 🇧🇷 Insights Brasil
+# Insights Brasil
 
 **Dados públicos para entender as contas, as políticas e a economia do Brasil.**
 
@@ -15,7 +15,7 @@ Um projeto local de pesquisa que reúne fontes oficiais, séries históricas, no
 </p>
 <p align="center"><em>Dívida pública e PIB — cada página apresenta métricas, séries e explicações de método.</em></p>
 
-## 🚀 Comece em um comando
+## Comece em um comando
 
 Requisitos: [uv](https://docs.astral.sh/uv/) e Node.js com npm.
 
@@ -25,7 +25,7 @@ Requisitos: [uv](https://docs.astral.sh/uv/) e Node.js com npm.
 
 O inicializador prepara as dependências, atualiza os dados locais do painel e abre o site em <http://127.0.0.1:5173>. Encerre com `Ctrl+C`.
 
-## 📊 O que você encontra
+## O que você encontra
 
 - **Dívida pública:** estoque da DPF, juros apropriados, fatores de variação, emissões, resgates e composição; inclui contexto da DBGG/PIB.
 - **Gastos públicos:** execução federal paga em saúde, segurança pública e educação, com destaque para investimentos GND 4.
@@ -36,7 +36,7 @@ O inicializador prepara as dependências, atualiza os dados locais do painel e a
 
 Os gráficos do site têm explicações sobre o que medem, como interpretar os resultados, por que importam e o que estudar para aprofundar a análise. Os dados são preparados localmente; o painel aberto não depende de chamadas a APIs.
 
-## 🧭 Organização do projeto
+## Organização do projeto
 
 ```text
 src/insights/     CLI, catálogo de fontes, coleta e armazenamento DuckDB
@@ -51,7 +51,7 @@ artifacts/        PDF de apresentação e ZIP distribuível
 
 O estudo visual que reúne gráficos do painel e explicações está em [notebooks/estudo_graficos_politicas_publicas.ipynb](notebooks/estudo_graficos_politicas_publicas.ipynb). Cobertura, fontes, fórmulas e limitações estão descritas em [data/README.md](data/README.md).
 
-## 🛠️ Atualize dados e análises
+## Atualize dados e análises
 
 As atualizações são manuais. Exemplo de fluxo para obter dados e reconstruir o painel:
 
@@ -71,7 +71,7 @@ make pdf      # gera a apresentação em PDF
 make package  # gera o PDF e o ZIP do projeto
 ```
 
-## 🗃️ Catálogo e banco local
+## Catálogo e banco local
 
 A CLI lista fontes, coleta conjuntos e consulta o estado do banco DuckDB:
 
@@ -84,7 +84,7 @@ uv run insights status
 
 O banco fica em `.insights/insights.duckdb` e os arquivos brutos da CLI em `.insights/raw/`. Defina `INSIGHTS_HOME` para escolher outro diretório. Conjuntos da CGU que exigem autenticação usam `PORTAL_TRANSPARENCIA_TOKEN`, lido do ambiente. A documentação da interface web está em [web/README.md](web/README.md).
 
-## 📦 PDF e pacote do projeto
+## PDF e pacote do projeto
 
 ```sh
 make pdf      # artifacts/apresentacao_insights_brasil.pdf
