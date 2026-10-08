@@ -92,3 +92,7 @@ make package  # artifacts/insights-brasil-projeto.zip
 ```
 
 O PDF é gerado a partir de um notebook de apresentação, com gráficos e explicações sem células de código. O ZIP inclui o projeto e o PDF, sem `.venv`, `.git`, `node_modules`, arquivos compilados ou caches; as dependências podem ser recriadas com `uv sync` e `npm ci --prefix web`.
+
+## Publicar no GitHub Pages
+
+O workflow `.github/workflows/deploy-pages.yml` compila e publica o site automaticamente quando há mudanças em `web/` na branch `main`. Também pode ser iniciado manualmente na aba **Actions**. Na primeira publicação, configure **Settings → Pages → Build and deployment → Source: GitHub Actions**. O site será disponibilizado em <https://certainlyWrong.github.io/insights/> após a conclusão do workflow.
