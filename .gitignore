@@ -7,3 +7,4 @@ __pycache__/
 web/node_modules/
 web/dist/
 artifacts/insights-brasil-projeto.zip
+.DS_Store
