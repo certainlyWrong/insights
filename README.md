@@ -40,6 +40,7 @@ O inicializador prepara as dependências, atualiza os dados locais do painel e a
 - **Programas sociais:** histórico agregado do BPC e contexto de Bolsa Família e Auxílio Gás.
 - **PIB:** valores nominais e crescimento real das Contas Nacionais Trimestrais do IBGE.
 - **Impostos:** arrecadação federal mensal e carga tributária anual do Governo Geral.
+- **Inflação dos alimentos:** IPCA de alimentos e bebidas, comparação com o índice geral, subitens, sazonalidade e áreas pesquisadas.
 - **Poder de compra:** variação dos preços pelo IPCA desde julho de 1994.
 
 Os gráficos do site têm explicações sobre o que medem, como interpretar os resultados, por que importam e o que estudar para aprofundar a análise.

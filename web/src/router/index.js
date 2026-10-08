@@ -7,6 +7,7 @@ const routes = [
   { path: "/pib", name: "pib", component: () => import("../pages/pibPage.vue"), meta: { page: "pib", title: "PIB" } },
   { path: "/poder-de-compra", name: "purchasingPower", component: () => import("../pages/purchasingPowerPage.vue"), meta: { page: "purchasingPower", title: "Poder de compra" } },
   { path: "/impostos", name: "taxes", component: () => import("../pages/taxesPage.vue"), meta: { page: "taxes", title: "Impostômetro" } },
+  { path: "/inflacao-dos-alimentos", name: "foodInflation", component: () => import("../pages/foodInflationPage.vue"), meta: { page: "foodInflation", title: "Inflação dos alimentos" } },
   { path: "/orcamento-federal", name: "spending", component: () => import("../pages/spendingPage.vue"), meta: { page: "spending", title: "Orçamento federal" } },
   { path: "/programas-sociais", name: "social", component: () => import("../pages/socialPage.vue"), meta: { page: "social", title: "Programas sociais" } },
   { path: "/explorar-dados", name: "explorer", component: () => import("../pages/explorerPage.vue"), meta: { page: "explorer", title: "Explorar dados" } },

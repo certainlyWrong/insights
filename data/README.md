@@ -54,6 +54,21 @@ A série mensal IPCA (SGS 433), obtida do [Banco Central do Brasil](https://dado
 
 Essa conversão é uma aproximação para o nível médio de preços medido pelo IPCA e não representa a inflação pessoal de cada família nem a variação cambial do real. A resposta exibida no painel usa o último mês presente no arquivo bruto; a coleta atual termina em agosto de 2026.
 
+## Inflação e preços dos alimentos
+
+`scripts/baixar_inflacao_alimentos.py` consulta fontes oficiais do IBGE/SIDRA e do Banco Central. O SIDRA usa as tabelas 655 (1999–2006), 2938 (2006–2011), 1419 (2012–2019) e 7060 (2020 em diante), que preservam a classificação do IPCA de cada período. O SGS 1635 fornece a série longa do grupo Alimentação e bebidas desde 1991; o SGS 433 fornece o índice geral. A tabela tratada nacional fica em `processed/ipca_alimentos_nacional.csv`; `processed/ipca_alimentos_regional.csv` contém agregados por áreas pesquisadas e subitens regionais publicados pela tabela 7060 (desde 2020).
+
+Cada coleta guarda as respostas compactadas em `raw/ibge/ipca_alimentos_sidra_YYYYMMDDTHHMMSSZ.json.gz` e atualiza `raw/ibge/ipca_alimentos_sidra.json.gz`. A taxa em 12 meses e o acumulado no ano são compostos a partir das taxas mensais, com períodos ausentes preservados como nulos. Índices rebaseados e distribuição dos subitens são métricas analíticas derivadas. Pesos publicados são preservados quando disponíveis; impactos aproximados não substituem contribuições oficiais. O IPCA mede variação e índice de preços ao consumidor, não preço de varejo unitário em reais. Tabelas e ponderações podem ser revistas e mudam ao longo do histórico.
+
+Para atualizar e gerar o pacote independente do site:
+
+```sh
+uv run python scripts/baixar_inflacao_alimentos.py
+uv run python web/scripts/build_data.py
+```
+
+Os bundles `web/src/assets/data/ipca_alimentos_nacional.json.gz` e `web/src/assets/data/ipca_alimentos_regional.json.gz` são carregados sob demanda pela página e pelo explorador; os dados regionais só são lidos quando a comparação por área se aproxima da tela ou quando essa base é escolhida no explorador. A navegação não consulta APIs externas. O DIEESE e a Conab não foram automatizados: não foi identificada uma série pública estruturada de preços por produto sem assinatura ou CAPTCHA, nem API oficial pública documentada adequada para coleta.
+
 ## Fontes
 
 | Arquivo bruto | Fonte e conteúdo | Histórico disponível | Licença |

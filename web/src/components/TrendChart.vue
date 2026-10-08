@@ -3,6 +3,7 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { RouterLink } from "vue-router";
 import { ArrowLeft, ArrowRight } from "@lucide/vue";
 import { formatPeriodLabel, readableChartOption } from "../charts/readableChartOption.js";
+import { enqueueChartInit } from "../charts/chartInitQueue.js";
 import * as echarts from "echarts/core";
 import { BarChart, LineChart } from "echarts/charts";
 import { DataZoomComponent, GridComponent, LegendComponent, TooltipComponent } from "echarts/components";
@@ -17,7 +18,9 @@ const props = defineProps({
 });
 const root = ref(null);
 const zoomRange = ref(null);
+const chartReady = ref(false);
 const readableOption = computed(() => readableChartOption(props.option));
+const hasPeriodNavigation = computed(() => Array.isArray(readableOption.value.dataZoom) && readableOption.value.dataZoom.length > 1);
 const periodValues = computed(() => {
   const xAxis = Array.isArray(readableOption.value.xAxis) ? readableOption.value.xAxis[0] : readableOption.value.xAxis;
   if (Array.isArray(xAxis?.data)) return xAxis.data.map(String);
@@ -25,7 +28,7 @@ const periodValues = computed(() => {
   return [...new Set(points.map((point) => Array.isArray(point) ? String(point[0]) : String(point)))].sort();
 });
 const visiblePeriodLabel = computed(() => {
-  if (!zoomRange.value || !readableOption.value.dataZoom) return "";
+  if (!zoomRange.value || !hasPeriodNavigation.value) return "";
   const periods = periodValues.value;
   if (!periods.length) return "";
   const first = Math.max(0, Math.floor((zoomRange.value.start / 100) * periods.length));
@@ -33,7 +36,8 @@ const visiblePeriodLabel = computed(() => {
   return `${formatPeriodLabel(periods[first])}–${formatPeriodLabel(periods[last])} · ${last - first + 1} períodos`;
 });
 let chart;
-let observer;
+let resizeObserver;
+let cancelChartInit;
 function updateZoomRange(event) {
   const range = event.batch?.[0] || event;
   if (Number.isFinite(range.start) && Number.isFinite(range.end)) {
@@ -52,28 +56,38 @@ function pagePeriods(direction) {
   }
   chart.dispatchAction({ type: "dataZoom", dataZoomIndex: 1, start: nextStart, end: nextEnd });
 }
-onMounted(() => {
+function clearPointer() {
+  if (!chart) return;
+  chart.dispatchAction({ type: "hideTip" });
+  chart.dispatchAction({ type: "updateAxisPointer", currTrigger: "leave" });
+}
+function initChart() {
+  if (chart || !root.value) return;
   chart = echarts.init(root.value);
-  chart.setOption(readableOption.value);
-  if (readableOption.value.dataZoom) {
+  chart.setOption(readableOption.value, { lazyUpdate: true });
+  chartReady.value = true;
+  if (hasPeriodNavigation.value) {
     const slider = readableOption.value.dataZoom[1];
     zoomRange.value = { start: slider.start, end: slider.end };
     chart.on("datazoom", updateZoomRange);
   }
-  observer = new ResizeObserver(() => {
+  resizeObserver = new ResizeObserver(() => {
     chart?.resize();
   });
-  observer.observe(root.value);
-});
+  resizeObserver.observe(root.value);
+}
+onMounted(() => { cancelChartInit = enqueueChartInit(initChart); });
 watch(readableOption, (option) => {
   if (!chart) return;
   chart.setOption(option, true);
-  zoomRange.value = option.dataZoom ? { start: option.dataZoom[1].start, end: option.dataZoom[1].end } : null;
+  const hasSlider = Array.isArray(option.dataZoom) && option.dataZoom.length > 1;
+  zoomRange.value = hasSlider ? { start: option.dataZoom[1].start, end: option.dataZoom[1].end } : null;
   chart.off("datazoom", updateZoomRange);
-  if (option.dataZoom) chart.on("datazoom", updateZoomRange);
+  if (hasSlider) chart.on("datazoom", updateZoomRange);
 }, { deep: true });
 onBeforeUnmount(() => {
-  observer?.disconnect();
+  resizeObserver?.disconnect();
+  cancelChartInit?.();
   chart?.off("datazoom", updateZoomRange);
   chart?.dispose();
 });
@@ -81,14 +95,15 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="chart-visual-wrap">
-    <div ref="root" class="trend-chart" :style="{ height }" role="img" :aria-label="guide.title"></div>
-    <nav v-if="readableOption.dataZoom" class="period-navigation" aria-label="Navegar pelos períodos do gráfico">
+    <div v-if="!chartReady" class="chart-pending" :style="{ height }" role="status"><span class="spinner"></span><span>Preparando gráfico para exibição…</span></div>
+    <div ref="root" class="trend-chart" :style="{ height }" role="img" :aria-label="guide.title" @mouseleave="clearPointer"></div>
+    <nav v-if="hasPeriodNavigation" class="period-navigation" aria-label="Navegar pelos períodos do gráfico">
       <button type="button" :disabled="zoomRange?.start <= 0" aria-label="Mostrar períodos anteriores" @click="pagePeriods(-1)"><ArrowLeft class="ui-icon" :size="16" /></button>
       <span>{{ visiblePeriodLabel }}</span>
       <button type="button" :disabled="zoomRange?.end >= 100" aria-label="Mostrar períodos seguintes" @click="pagePeriods(1)"><ArrowRight class="ui-icon" :size="16" /></button>
     </nav>
     <div class="chart-guide">
-      <p v-if="readableOption.dataZoom" class="period-navigation-hint">Use a faixa, as setas do gráfico ou o gesto de arrastar para percorrer os períodos. Todas as observações permanecem disponíveis.</p>
+      <p v-if="hasPeriodNavigation" class="period-navigation-hint">Use a faixa, as setas do gráfico ou o gesto de arrastar para percorrer os períodos. Todas as observações permanecem disponíveis.</p>
       <p class="chart-guide-summary">{{ guide.summary || guide.interpretation }}</p>
       <details>
         <summary>Interpretação, método e referências</summary>

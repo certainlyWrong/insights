@@ -1,14 +1,16 @@
-import { computed, markRaw, onMounted, ref, watch } from "vue";
+import { computed, markRaw, onMounted, ref, shallowRef, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import Papa from "papaparse";
 import { createChartOptions } from "../charts/chartOptions.js";
 import { chartGuides } from "../content/chartGuides.js";
 import {
-  BookOpenText, ChartColumnIncreasing, ChartNoAxesCombined, CircleDollarSign,
+  Apple, BookOpenText, ChartColumnIncreasing, ChartNoAxesCombined, CircleDollarSign,
   HeartHandshake, House, Landmark, Percent, ReceiptText, Search,
 } from "@lucide/vue";
 import dashboardUrl from "../assets/data/dashboard.json.gz?url";
 import titlesUrl from "../assets/data/posicoes_por_titulo.csv.gz?url";
+import foodNationalUrl from "../assets/data/ipca_alimentos_nacional.json.gz?url";
+import foodRegionalUrl from "../assets/data/ipca_alimentos_regional.json.gz?url";
 
 export function useDashboard() {
 
@@ -17,6 +19,7 @@ const menu = markRaw([
   { id: "debt", label: "Dívida pública", path: "/divida-publica", icon: Landmark },
   { id: "interest", label: "Juros da dívida", path: "/juros-da-divida", icon: Percent },
   { id: "pib", label: "PIB", path: "/pib", icon: ChartNoAxesCombined },
+  { id: "foodInflation", label: "Inflação dos alimentos", path: "/inflacao-dos-alimentos", icon: Apple },
   { id: "purchasingPower", label: "Poder de compra", path: "/poder-de-compra", icon: CircleDollarSign },
   { id: "taxes", label: "Impostômetro", path: "/impostos", icon: ReceiptText },
   { id: "spending", label: "Orçamento federal", path: "/orcamento-federal", icon: ChartColumnIncreasing },
@@ -39,6 +42,12 @@ const detailRows = ref([]);
 const detailCsv = ref("");
 const detailLoading = ref(false);
 const detailLoaded = ref(false);
+const foodData = shallowRef(null);
+const foodRegionalData = shallowRef(null);
+const foodLoading = ref(false);
+const foodRegionalLoading = ref(false);
+const foodLoaded = ref(false);
+const foodRegionalLoaded = ref(false);
 const palette = {
   get ink() { return ({ dark: "#9fc4df", coffee: "#765033", forest: "#286b56" })[theme.value] || "#20394f"; },
   get teal() { return ({ dark: "#58c2b0", coffee: "#a76532", forest: "#3d8a65" })[theme.value] || "#188984"; },
@@ -141,6 +150,12 @@ const datasets = computed(() => {
     taxesAnnual: { label: "Impostos — arrecadação federal anual", rows: d.taxes.annual },
     taxBurdenAnnual: { label: "Carga tributária bruta — governo geral", rows: d.taxes.general_annual },
     purchasingPowerMonthly: { label: "IPCA e poder de compra do real — série mensal", rows: d.purchasing_power.monthly },
+    ...(foodData.value ? {
+      foodInflationNational: { label: "IPCA — alimentos e grupos nacionais", rows: foodData.value.nacional },
+    } : {}),
+    ...(foodRegionalData.value ? {
+      foodInflationRegional: { label: "IPCA — áreas e subitens alimentares", rows: foodRegionalData.value.regional },
+    } : {}),
     titles: { label: "Posições individuais por título", rows: detailRows.value },
   };
 });
@@ -163,6 +178,8 @@ const datasetDescriptions = {
   taxesAnnual: ["Soma anual da arrecadação federal, sem correção pela inflação.", "Receita Federal — Arrecadação federal"],
   taxBurdenAnnual: ["Carga tributária bruta anual das esferas federal, estadual e municipal.", "Tesouro Nacional — Carga Tributária do Governo Geral"],
   purchasingPowerMonthly: ["Variação mensal do IPCA e índice de preços acumulado desde julho de 1994.", "Banco Central/IBGE — IPCA mensal"],
+  foodInflationNational: ["Variações mensais do IPCA geral e dos grupos alimentares, mais subitens nacionais.", "IBGE/SIDRA — IPCA alimentos"],
+  foodInflationRegional: ["Variações do IPCA por áreas pesquisadas e subitens alimentares disponíveis desde 2020.", "IBGE/SIDRA — IPCA alimentos"],
   titles: ["Posições individuais por título e vencimento; a série completa é carregada sob demanda.", "Tesouro Nacional — Estoque da DPF"],
 };
 const datasetInfo = computed(() => {
@@ -241,11 +258,42 @@ async function loadData() {
     if (!response.ok) throw new Error(`A base local não foi encontrada (HTTP ${response.status}).`);
     data.value = JSON.parse(await readAssetText(response));
     const requestedDataset = String(route.query.dataset || "");
+    if (requestedDataset.startsWith("foodInflation")) await loadFoodData();
+    if (requestedDataset === "foodInflationRegional") await loadFoodRegionalData();
     if (requestedDataset && datasets.value[requestedDataset]) activeData.value = requestedDataset;
+    if (page.value === "foodInflation") await loadFoodData();
   } catch (e) {
     error.value = location.protocol === "file:"
       ? "Abra o painel por um servidor web. Na pasta web, execute npm run dev e acesse o endereço exibido no terminal."
       : `Não foi possível ler os dados do painel: ${e.message}. Atualize a página; se o problema persistir após uma nova publicação, confira o pacote em web/src/assets/data/.`;
+  }
+}
+async function loadFoodData() {
+  if (foodLoaded.value || foodLoading.value) return;
+  foodLoading.value = true;
+  try {
+    const response = await fetch(foodNationalUrl);
+    if (!response.ok) throw new Error(`O pacote nacional de inflação dos alimentos não foi encontrado (HTTP ${response.status}).`);
+    foodData.value = JSON.parse(await readAssetText(response));
+    foodLoaded.value = true;
+  } catch (e) {
+    error.value = `Não foi possível carregar as séries de inflação dos alimentos: ${e.message}`;
+  } finally {
+    foodLoading.value = false;
+  }
+}
+async function loadFoodRegionalData() {
+  if (foodRegionalLoaded.value || foodRegionalLoading.value) return;
+  foodRegionalLoading.value = true;
+  try {
+    const response = await fetch(foodRegionalUrl);
+    if (!response.ok) throw new Error(`O pacote regional de inflação dos alimentos não foi encontrado (HTTP ${response.status}).`);
+    foodRegionalData.value = JSON.parse(await readAssetText(response));
+    foodRegionalLoaded.value = true;
+  } catch (e) {
+    error.value = `Não foi possível carregar as séries regionais de inflação dos alimentos: ${e.message}`;
+  } finally {
+    foodRegionalLoading.value = false;
   }
 }
 async function loadTitles() {
@@ -271,7 +319,10 @@ watch(activeData, async (value) => {
     router.replace({ name: "explorer", query });
   }
   if (value === "titles") await loadTitles();
+  if (value.startsWith("foodInflation")) await loadFoodData();
+  if (value === "foodInflationRegional") await loadFoodRegionalData();
 });
+watch(page, (value) => { if (value === "foodInflation") loadFoodData(); });
 watch(search, () => { pageNumber.value = 1; });
 function go(id) {
   const item = menu.find((entry) => entry.id === id);
@@ -310,6 +361,12 @@ onMounted(() => {
     detailCsv,
     detailLoading,
     detailLoaded,
+    foodData,
+    foodRegionalData,
+    foodLoading,
+    foodRegionalLoading,
+    foodLoaded,
+    foodRegionalLoaded,
     palette,
     chartTheme,
     debtLatest,
@@ -383,6 +440,8 @@ onMounted(() => {
     readAssetText,
     loadData,
     loadTitles,
+    loadFoodData,
+    loadFoodRegionalData,
     go,
     exportTable,
     csvEscape

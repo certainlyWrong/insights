@@ -1,6 +1,6 @@
 <script setup>
 import { inject, toRefs } from "vue";
-import { ArrowUpRight, Landmark, Percent, ChartNoAxesCombined, CircleDollarSign, ChartColumnIncreasing, HeartHandshake, ReceiptText, ArrowRight, Info } from "@lucide/vue";
+import { ArrowUpRight, Landmark, Percent, ChartNoAxesCombined, CircleDollarSign, ChartColumnIncreasing, HeartHandshake, ReceiptText, Apple, ArrowRight, Info } from "@lucide/vue";
 import TrendChart from "../components/TrendChart.vue";
 import MetricCard from "../components/MetricCard.vue";
 import SectionHeading from "../components/SectionHeading.vue";
@@ -33,7 +33,7 @@ const { data, debtLatest, latestInterestYear, macroLatest, latestYear, socialLat
             <MetricCard tone="teal"><template #label>ARRECADAÇÃO FEDERAL · {{ taxLatest?.ano }}</template><template #value>R$ {{ pretty(taxAnnualRunning / 1e6, 2) }} <small>tri</small></template><template #foot><span>Até {{ month(taxLatest?.data) }}</span><i>Total publicado · RFB</i></template><template #decoration><div class="sparkline" aria-hidden="true"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div></template></MetricCard>
           </div>
 
-          <SectionHeading kicker="EXPLORE OS ESTUDOS" title="Sete perspectivas sobre as contas públicas" note="Indicadores com fontes e método" index-title />
+          <SectionHeading kicker="EXPLORE OS ESTUDOS" title="Oito perspectivas sobre os dados públicos" note="Indicadores com fontes e método" index-title />
           <div class="overview-links">
             <button @click="go('debt')"><div class="overview-link-head"><Landmark class="overview-topic-icon" :size="16"/><span>DÍVIDA PÚBLICA</span></div><strong>Estoque, composição e fatores</strong><small>DPF · Tesouro Nacional <ArrowUpRight class="ui-icon" :size="12" /></small></button>
             <button @click="go('interest')"><div class="overview-link-head"><Percent class="overview-topic-icon" :size="16"/><span>JUROS</span></div><strong>R$ {{ pretty(latestInterestYear?.juros_dpf_bilhoes, 0) }} bi apropriados em {{ latestInterestYear?.ano }}</strong><small>Competência e custo aproximado <ArrowUpRight class="ui-icon" :size="12" /></small></button>
@@ -42,6 +42,7 @@ const { data, debtLatest, latestInterestYear, macroLatest, latestYear, socialLat
             <button @click="go('spending')"><div class="overview-link-head"><ChartColumnIncreasing class="overview-topic-icon" :size="16"/><span>ORÇAMENTO FEDERAL</span></div><strong>Saúde, educação e segurança</strong><small>Pagamentos e investimento público <ArrowUpRight class="ui-icon" :size="12" /></small></button>
             <button @click="go('social')"><div class="overview-link-head"><HeartHandshake class="overview-topic-icon" :size="16"/><span>PROTEÇÃO SOCIAL</span></div><strong>{{ pretty(socialLatest?.beneficiarios_total, 0) }} pessoas no BPC em {{ socialLatest?.ano }}</strong><small>BPC, Bolsa Família e Auxílio Gás <ArrowUpRight class="ui-icon" :size="12" /></small></button>
             <button @click="go('taxes')"><div class="overview-link-head"><ReceiptText class="overview-topic-icon" :size="16"/><span>ARRECADAÇÃO DE IMPOSTOS</span></div><strong>R$ {{ pretty(taxAnnualRunning / 1e6, 2) }} tri no ano até {{ month(taxLatest?.data) }}</strong><small>Receita federal · sem projeção <ArrowUpRight class="ui-icon" :size="12" /></small></button>
+            <button @click="go('foodInflation')"><div class="overview-link-head"><Apple class="overview-topic-icon" :size="16"/><span>PREÇOS DOS ALIMENTOS</span></div><strong>Inflação ao consumidor e produtos</strong><small>IPCA · IBGE e Banco Central <ArrowUpRight class="ui-icon" :size="12" /></small></button>
           </div>
 
           <div class="dashboard-grid">

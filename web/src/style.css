@@ -200,8 +200,14 @@ h1, h2, h3, p { margin-top: 0; }
 .subtle-link { padding: 4px 0; border: 0; color: var(--accent-link); background: transparent; font-size: 12px; white-space: normal; }
 .subtle-link b { margin-left: 4px; font-size: 15px; }
 .unit-pill { flex: 0 1 auto; max-width: 100%; padding: 5px 9px; border: 1px solid #e9ece6; border-radius: 20px; color: #657873; background: #f7f8f4; font: 12px/1.4 DM Mono, monospace; white-space: normal; }
+.food-filters { display: flex; flex-wrap: wrap; gap: 7px; }
+.food-filters select, .unit-pill select { max-width: min(230px, 55vw); border: 0; outline-color: var(--accent-link); color: inherit; background: transparent; font: inherit; }
+.chart-loading { min-height: 385px; display: grid; place-items: center; color: var(--muted); font-size: 14px; }
+.chart-load-button { min-height: 385px; width: 100%; border: 1px dashed var(--accent-border); border-radius: 6px; color: var(--accent-link); background: var(--canvas); font-size: 14px; }
+.chart-load-button:hover { border-color: var(--accent-hover-border); background: var(--accent-soft); }
 .trend-chart { width: 100%; min-width: 0; }
-.chart-visual-wrap { min-width: 0; }
+.chart-visual-wrap { min-width: 0; position: relative; }
+.chart-pending { position: absolute; inset: 0 0 auto; display: flex; align-items: center; justify-content: center; gap: 9px; color: var(--muted); font-size: 13px; pointer-events: none; }
 .period-navigation { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 2px 0 12px; color: #53656e; font-size: 12px; }
 .period-navigation button { width: 36px; height: 34px; display: grid; flex: 0 0 auto; place-items: center; border: 1px solid var(--accent-border); border-radius: 6px; color: var(--accent-link); background: var(--paper); }
 .period-navigation button:hover:not(:disabled) { border-color: var(--accent-hover-border); background: var(--accent-soft-alt); }

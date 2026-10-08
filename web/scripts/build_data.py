@@ -170,6 +170,18 @@ for index, row in tax_annual.iterrows():
             row["arrecadacao_total_federal_milhoes"] / prior["arrecadacao_total_federal_milhoes"].sum() - 1
         ) * 100
 tax_ctb = records(PROCESSED / "carga_tributaria_governo_geral_anual.csv")
+food_national = records(PROCESSED / "ipca_alimentos_nacional.csv")
+food_regional = records(PROCESSED / "ipca_alimentos_regional.csv")
+with gzip.open(ROOT / "data/raw/ibge/ipca_alimentos_sidra.json.gz", "rt", encoding="utf-8") as stream:
+    food_raw_meta = json.load(stream)
+food_source = {
+        "name": "IBGE/SIDRA — IPCA alimentos",
+        "collected_at": food_raw_meta["coletado_em"],
+        "period_start": min(row["periodo"] for row in food_national if str(row["classificacao_codigo"]) == "7170"),
+        "period_end": max(row["periodo"] for row in food_national if str(row["classificacao_codigo"]) == "7170"),
+        "regional_products_start": "2020-01",
+        "scope": "Índice e variações do IPCA; não são preços unitários em reais.",
+}
 
 # Purchasing power of the Real. July 1994 is the price-level reference; the
 # first compounded monthly change is August 1994, so July's inflation is not
@@ -207,6 +219,8 @@ payload = clean(
             {"name": "Tesouro Nacional — Emissões e resgates", "url": "https://www.tesourotransparente.gov.br/ckan/dataset/emissoes-e-resgates-divida-publica-federal"},
             {"name": "Banco Central — Séries SGS", "url": "https://dadosabertos.bcb.gov.br/"},
             {"name": "Banco Central/IBGE — IPCA mensal (SGS 433)", "url": "https://dadosabertos.bcb.gov.br/dataset/433-indice-nacional-de-precos-ao-consumidor-amplo-ipca"},
+            {"name": "IBGE/SIDRA — IPCA alimentos", "url": "https://sidra.ibge.gov.br/tabela/7060"},
+            {"name": "Banco Central — IPCA alimentação e bebidas (SGS 1635)", "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.1635/dados?formato=json"},
             {"name": "SIOP — Dados Abertos do Orçamento", "url": "https://orcamento.dados.gov.br/siopdoc/doku.php/acesso_publico:dados_abertos/"},
             {"name": "MDS/SAGICAD — VIS DATA, benefícios sociais", "url": "https://aplicacoes.cidadania.gov.br/vis/data3/"},
             {"name": "MDS — Balanço do Bolsa Família 2024", "url": "https://www.gov.br/mds/pt-br/noticias-e-conteudos/desenvolvimento-social/noticias-desenvolvimento-social/governo-federal-repassa-r-168-3-bilhoes-pelo-bolsa-familia-em-2024"},
@@ -284,6 +298,11 @@ payload = clean(
 
 with gzip.open(ASSETS / "dashboard.json.gz", "wt", encoding="utf-8", compresslevel=8) as f:
     json.dump(payload, f, ensure_ascii=False, separators=(",", ":"))
+with gzip.open(ASSETS / "ipca_alimentos_nacional.json.gz", "wt", encoding="utf-8", compresslevel=8) as f:
+    json.dump(clean({"source": food_source, "nacional": food_national}), f, ensure_ascii=False, separators=(",", ":"))
+with gzip.open(ASSETS / "ipca_alimentos_regional.json.gz", "wt", encoding="utf-8", compresslevel=8) as f:
+    json.dump(clean({"regional": food_regional}), f, ensure_ascii=False, separators=(",", ":"))
 shutil.copy2(PROCESSED / "dpf_posicoes_por_titulo.csv.gz", ASSETS / "posicoes_por_titulo.csv.gz")
 print(f"Dashboard bundle: {ASSETS / 'dashboard.json.gz'}")
+print(f"Food inflation bundles: {ASSETS / 'ipca_alimentos_nacional.json.gz'}, {ASSETS / 'ipca_alimentos_regional.json.gz'}")
 print(f"Debt months: {len(payload['debt']['monthly'])}; budget rows: {len(payload['spending'])}")

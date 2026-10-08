@@ -111,4 +111,12 @@ export const chartGuides = {
     importance: "A série mostra por que valores nominais de décadas diferentes não são diretamente comparáveis e quantifica a erosão do poder de compra da moeda ao longo do tempo.",
     study: "Estude IPCA e cesta de consumo, números-índice, inflação acumulada e composta, inflação média versus inflação pessoal, indexação e correção monetária.",
   },
+  foodInflation: {
+    title: "Inflação e preços dos alimentos",
+    summary: "O IPCA mede variações de preços ao consumidor; as séries não informam preços de varejo em reais por quilo ou unidade.",
+    represents: "Variações do IPCA geral, dos grupos alimentares e de subitens da cesta pesquisada pelo IBGE. O histórico longo combina séries publicadas pelo BCB/SGS com tabelas sucessivas do SIDRA, mantendo a origem registrada em cada observação.",
+    interpretation: "Taxas mensais mostram a variação de cada mês. A inflação em 12 meses compõe os últimos doze fatores mensais; acumulado no ano compõe janeiro até o mês observado. Índices rebaseados permitem comparar trajetórias, não preços absolutos.",
+    importance: "Alimentos têm peso relevante no orçamento familiar e sua inflação pode diferir bastante do índice geral e entre áreas pesquisadas.",
+    study: "Estude números-índice, ponderação do IPCA, inflação acumulada, grupos e subitens, sazonalidade, áreas de coleta e diferença entre preço relativo e preço observado.",
+  },
 };
