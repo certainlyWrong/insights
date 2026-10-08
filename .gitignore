@@ -6,3 +6,4 @@ __pycache__/
 .ipynb_checkpoints/
 web/node_modules/
 web/dist/
+artifacts/insights-brasil-projeto.zip
