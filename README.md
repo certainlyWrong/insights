@@ -2,6 +2,12 @@
 
 **Dados públicos para entender as contas, as políticas e a economia do Brasil.**
 
+<p align="center">
+  <a href="https://certainlywrong.github.io/insights/">
+    <img src="docs/images/open-dashboard.svg" alt="Acessar o painel interativo Insights Brasil" width="280">
+  </a>
+</p>
+
 Um projeto de pesquisa que reúne fontes oficiais, séries históricas, notebooks reproduzíveis e um painel interativo. O foco principal é a **dívida pública brasileira**, com estudos complementares sobre gastos, PIB, impostos, programas sociais e poder de compra.
 
 <p align="center">
@@ -15,11 +21,7 @@ Um projeto de pesquisa que reúne fontes oficiais, séries históricas, notebook
 </p>
 <p align="center"><em>Dívida pública e PIB — cada página apresenta métricas, séries e explicações de método.</em></p>
 
-## Acesse o painel
-
-O site está publicado no GitHub Pages: **[certainlywrong.github.io/insights](https://certainlywrong.github.io/insights/)**. Ele funciona diretamente no navegador e carrega os dados incluídos no projeto, sem consultar APIs externas durante o uso.
-
-Para executar o painel localmente ou preparar dados atualizados, use o inicializador abaixo.
+O painel funciona diretamente no navegador e carrega os dados incluídos no projeto, sem consultar APIs externas durante o uso. Para executar localmente ou preparar dados atualizados, use o inicializador abaixo.
 
 ## Execute localmente
 

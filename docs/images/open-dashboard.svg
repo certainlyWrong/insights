@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="72" viewBox="0 0 360 72" role="img" aria-labelledby="title desc">
+  <title id="title">Acessar o painel Insights Brasil</title>
+  <desc id="desc">Botão para abrir o painel de dados públicos do Brasil.</desc>
+  <rect x="1" y="1" width="358" height="70" rx="14" fill="#153b45" stroke="#2d716b" stroke-width="2"/>
+  <circle cx="38" cy="36" r="18" fill="#225b5a"/>
+  <path d="M27 43V35h6v8m3 0V28h6v15m3 0V32h6v11" fill="none" stroke="#8de0cd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+  <text x="70" y="31" fill="#a9c8c3" font-family="Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1.4">PAINEL INTERATIVO</text>
+  <text x="70" y="51" fill="#ffffff" font-family="Arial, sans-serif" font-size="16" font-weight="700">Acessar Insights Brasil</text>
+  <path d="M326 36h15m-6-6 6 6-6 6" fill="none" stroke="#8de0cd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+</svg>
