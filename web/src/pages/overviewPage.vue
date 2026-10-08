@@ -4,7 +4,7 @@ import { ArrowUpRight, Landmark, Percent, ChartNoAxesCombined, CircleDollarSign,
 import TrendChart from "../components/TrendChart.vue";
 import MetricCard from "../components/MetricCard.vue";
 import SectionHeading from "../components/SectionHeading.vue";
-const { chartStart, data, debtLatest, latestInterestYear, macroLatest, latestYear, socialLatest, pibLatest, taxLatest, taxAnnualRunning, purchasingPowerLatest, pretty, tri, percent, month, debtChart, macroChart, overviewTrend, chartGuides, go } = toRefs(inject("dashboard"));
+const { data, debtLatest, latestInterestYear, macroLatest, latestYear, socialLatest, pibLatest, taxLatest, taxAnnualRunning, purchasingPowerLatest, pretty, tri, percent, month, debtChart, macroChart, overviewTrend, chartGuides, go } = toRefs(inject("dashboard"));
 </script>
 
 <template>
@@ -46,20 +46,20 @@ const { chartStart, data, debtLatest, latestInterestYear, macroLatest, latestYea
 
           <div class="dashboard-grid">
             <article class="panel panel-debt">
-              <div class="panel-heading"><div><span class="kicker">{{ chartStart === '2012' ? '2012 — 2026' : '2000 — 2026' }}</span><h3>Trajetória da dívida federal</h3></div><button class="subtle-link" @click="go('debt')">Ver análise <b><ArrowUpRight class="ui-icon" :size="12" :stroke-width="2" /></b></button></div>
-              <TrendChart :option="debtChart" :guide="chartGuides.debt" height="315px" />
+              <div class="panel-heading"><div><span class="kicker">2000 — 2026</span><h3>Trajetória da dívida federal</h3></div><button class="subtle-link" @click="go('debt')">Ver análise <b><ArrowUpRight class="ui-icon" :size="12" :stroke-width="2" /></b></button></div>
+              <TrendChart :option="debtChart" :guide="chartGuides.debt" height="360px" />
               <div class="legend-row"><span><i class="legend blue"></i> DPF total</span><span><i class="legend teal"></i> Interna</span><span><i class="legend coral"></i> Externa</span><small>R$ trilhões correntes</small></div>
             </article>
             <article class="panel panel-macro">
               <div class="panel-heading"><div><span class="kicker">BANCO CENTRAL</span><h3>Dívida e tamanho da economia</h3></div><span class="unit-pill">% do PIB</span></div>
-              <TrendChart :option="macroChart" :guide="chartGuides.macro" height="265px" />
+              <TrendChart :option="macroChart" :guide="chartGuides.macro" height="310px" />
               <p class="panel-caption">A DBGG inclui também estados e municípios. Seu escopo é mais amplo que a DPF.</p>
             </article>
           </div>
           <SectionHeading kicker="ORÇAMENTO FEDERAL" title="Recursos pagos por área" spacer><button class="subtle-link" @click="go('spending')">Ver saúde, educação e segurança <b><ArrowRight class="ui-icon" :size="12" :stroke-width="2" /></b></button></SectionHeading>
           <article class="panel">
             <div class="panel-heading"><div><span class="kicker">2001 — {{ latestYear }} · VALORES REAIS</span><h3>Gasto federal corrigido pela inflação</h3></div><span class="unit-pill">IPCA · R$ de 2025</span></div>
-            <TrendChart :option="overviewTrend" :guide="chartGuides.spending" height="300px" />
+            <TrendChart :option="overviewTrend" :guide="chartGuides.spending" height="345px" />
             <div class="legend-row"><span><i class="legend coral"></i> Saúde</span><span><i class="legend teal"></i> Educação</span><span><i class="legend gold"></i> Segurança Pública</span><small>Valores corrigidos pelo IPCA</small></div>
           </article>
           <SectionHeading kicker="PROTEÇÃO SOCIAL" title="Programas de grande escala" spacer><button class="subtle-link" @click="go('social')">Ver série e método <b><ArrowRight class="ui-icon" :size="12" :stroke-width="2" /></b></button></SectionHeading>

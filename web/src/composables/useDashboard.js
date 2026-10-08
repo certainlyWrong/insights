@@ -28,7 +28,6 @@ const route = useRoute();
 const router = useRouter();
 const page = computed(() => route.meta.page || "notFound");
 const theme = ref("light");
-const chartStart = ref("all");
 const pibPeriod = ref("quarterly");
 const data = ref(null);
 const error = ref("");
@@ -41,15 +40,21 @@ const detailCsv = ref("");
 const detailLoading = ref(false);
 const detailLoaded = ref(false);
 const palette = {
-  get ink() { return theme.value === "dark" ? "#9fc4df" : "#20394f"; },
-  get teal() { return theme.value === "dark" ? "#58c2b0" : "#188984"; },
-  get coral() { return theme.value === "dark" ? "#ef927d" : "#d76e58"; },
-  get gold() { return theme.value === "dark" ? "#e5bd68" : "#c89c46"; },
-  get slate() { return theme.value === "dark" ? "#aab8c1" : "#8e9da7"; },
+  get ink() { return ({ dark: "#9fc4df", coffee: "#765033", forest: "#286b56" })[theme.value] || "#20394f"; },
+  get teal() { return ({ dark: "#58c2b0", coffee: "#a76532", forest: "#3d8a65" })[theme.value] || "#188984"; },
+  get coral() { return ({ dark: "#ef927d", coffee: "#c46b50", forest: "#c27653" })[theme.value] || "#d76e58"; },
+  get gold() { return ({ dark: "#e5bd68", coffee: "#c08a3d", forest: "#b69749" })[theme.value] || "#c89c46"; },
+  get slate() { return ({ dark: "#aab8c1", coffee: "#8d7968", forest: "#74877a" })[theme.value] || "#8e9da7"; },
 };
-const chartTheme = computed(() => theme.value === "dark"
-  ? { label: "#aebbc3", legend: "#b7c3ca", axis: "#3b4a55", grid: "#2a3741", tooltip: "#0c141c", pointer: "#8295a2" }
-  : { label: "#80909a", legend: "#657588", axis: "#e6e9e7", grid: "#edf0ee", tooltip: "#142b40", pointer: "#9baab4" });
+const chartTheme = computed(() => {
+  const presets = {
+    light: { label: "#80909a", legend: "#657588", axis: "#e6e9e7", grid: "#edf0ee", tooltip: "#142b40", pointer: "#9baab4" },
+    dark: { label: "#aebbc3", legend: "#b7c3ca", axis: "#3b4a55", grid: "#2a3741", tooltip: "#0c141c", pointer: "#8295a2" },
+    coffee: { label: "#705a48", legend: "#604832", axis: "#d8c8b4", grid: "#e9ddcd", tooltip: "#4a3427", pointer: "#a1805b" },
+    forest: { label: "#536b5b", legend: "#405b48", axis: "#cbd8cb", grid: "#dce6dc", tooltip: "#23392d", pointer: "#76937b" },
+  };
+  return presets[theme.value] || presets.light;
+});
 
 const debtLatest = computed(() => data.value?.debt.monthly.at(-1));
 const interestLatest = computed(() => data.value?.debt.interest.monthly.at(-1));
@@ -113,10 +118,7 @@ function month(value) {
   return m + "/" + year;
 }
 const navLabel = computed(() => menu.find((item) => item.id === page.value)?.label || "Página não encontrada");
-function includesChartStart(value) {
-  if (chartStart.value !== "2012") return true;
-  return String(value ?? "") >= "2012";
-}
+function includesChartStart() { return true; }
 
 const datasets = computed(() => {
   if (!data.value) return {};
@@ -203,11 +205,13 @@ const { tooltip, baseXAxis, baseYAxis, debtChart, macroChart, factorsChart, inte
 
 function initTheme() {
   const saved = localStorage.getItem("insights-theme");
-  theme.value = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  const validThemes = ["light", "dark", "coffee", "forest"];
+  theme.value = validThemes.includes(saved) ? saved : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   document.documentElement.dataset.theme = theme.value;
 }
-function toggleTheme() {
-  theme.value = theme.value === "dark" ? "light" : "dark";
+function setTheme(value) {
+  if (!["light", "dark", "coffee", "forest"].includes(value)) return;
+  theme.value = value;
   document.documentElement.dataset.theme = theme.value;
   localStorage.setItem("insights-theme", theme.value);
 }
@@ -295,7 +299,6 @@ onMounted(() => {
     menu,
     page,
     theme,
-    chartStart,
     pibPeriod,
     data,
     error,
@@ -376,7 +379,7 @@ onMounted(() => {
     purchasingPowerChart,
     chartGuides,
     initTheme,
-    toggleTheme,
+    setTheme,
     readAssetText,
     loadData,
     loadTitles,
